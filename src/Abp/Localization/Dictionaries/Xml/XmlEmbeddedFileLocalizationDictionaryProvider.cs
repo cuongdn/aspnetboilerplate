@@ -11,7 +11,7 @@ namespace Abp.Localization.Dictionaries.Xml
     {
         private readonly Assembly _assembly;
         private readonly string _rootNamespace;
-        
+
         /// <summary>
         /// Creates a new <see cref="XmlEmbeddedFileLocalizationDictionaryProvider"/> object.
         /// </summary>
@@ -26,6 +26,8 @@ namespace Abp.Localization.Dictionaries.Xml
         public override void Initialize(string sourceName)
         {
             var resourceNames = _assembly.GetManifestResourceNames();
+            const char byteOrderMarkChar = '\uFEFF';
+
             foreach (var resourceName in resourceNames)
             {
                 if (resourceName.StartsWith(_rootNamespace))
@@ -33,7 +35,10 @@ namespace Abp.Localization.Dictionaries.Xml
                     using (var stream = _assembly.GetManifestResourceStream(resourceName))
                     {
                         var bytes = stream.GetAllBytes();
-                        var xmlString = Encoding.UTF8.GetString(bytes, 3, bytes.Length - 3); //Skipping byte order mark
+                        // Exception here if there are any files that do not have BOM
+                        // var xmlString = Encoding.UTF8.GetString(bytes, 3, bytes.Length - 3); //Skipping byte order mark
+                        // Replace by
+                        var xmlString = Encoding.UTF8.GetString(bytes).Trim(new[] { byteOrderMarkChar });
 
                         var dictionary = CreateXmlLocalizationDictionary(xmlString);
                         if (Dictionaries.ContainsKey(dictionary.CultureInfo.Name))
