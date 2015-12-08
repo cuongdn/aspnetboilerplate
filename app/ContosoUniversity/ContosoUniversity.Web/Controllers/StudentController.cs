@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using ContosoUniversity.Students;
+using ContosoUniversity.Students.Dtos;
 
 namespace ContosoUniversity.Web.Controllers
 {
@@ -21,6 +22,15 @@ namespace ContosoUniversity.Web.Controllers
         public ActionResult Edit(int id)
         {
             return View(_studentService.GetStudent(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(StudentDto model)
+        {
+            if (ModelState.IsValid)
+            {
+            }
+            return View(model);
         }
 
     }

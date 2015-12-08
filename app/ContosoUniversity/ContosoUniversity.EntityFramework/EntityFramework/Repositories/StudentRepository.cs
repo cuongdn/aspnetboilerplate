@@ -6,7 +6,7 @@ using ContosoUniversity.Students;
 
 namespace ContosoUniversity.EntityFramework.Repositories
 {
-    public class StudentRepository : ContosoUniversityRepositoryBase<Student, int>, IStudentRepository
+    public class StudentRepository : ContosoUniversityRepositoryBase<Student>, IStudentRepository
     {
         public StudentRepository(IDbContextProvider<ContosoUniversityDbContext> dbContextProvider)
             : base(dbContextProvider)

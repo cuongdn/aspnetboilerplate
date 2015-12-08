@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Abp.Modules;
 using Abp.Web.Mvc.Controllers;
+using Abp.Web.Mvc.Models;
 
 namespace Abp.Web.Mvc
 {
@@ -21,6 +22,9 @@ namespace Abp.Web.Mvc
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+
+            ModelBinderProviders.BinderProviders.Clear();
+            ModelBinderProviders.BinderProviders.Add(new AbpValidationModelBinderProvider());
 
             ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(IocManager.IocContainer.Kernel));
             GlobalFilters.Filters.Add(IocManager.Resolve<AbpHandleErrorAttribute>());
