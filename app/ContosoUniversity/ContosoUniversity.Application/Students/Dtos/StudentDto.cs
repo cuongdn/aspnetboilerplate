@@ -8,14 +8,14 @@ using Abp.Runtime.Validation;
 
 namespace ContosoUniversity.Students.Dtos
 {
-    [AutoMapFrom(typeof(Student))]
-    public class StudentDto : EntityDto<int>, IInputDto, ICustomValidate
+    public class StudentDto : EntityDto<int>, IMapFrom<Student>, IInputDto, ICustomValidate
     {
         [Required]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
         public DateTime? EnrollmentDate { get; set; }
+
         public void AddValidationErrors(List<ValidationResult> results)
         {
             if (FirstName.StartsWith("A"))

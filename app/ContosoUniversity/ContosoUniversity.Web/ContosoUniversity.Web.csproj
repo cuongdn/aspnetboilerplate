@@ -46,6 +46,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\libs\Abp.dll</HintPath>
     </Reference>
+    <Reference Include="Abp.AutoMapper, Version=0.7.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\Abp.AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Abp.Web, Version=0.7.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\libs\Abp.Web.dll</HintPath>
