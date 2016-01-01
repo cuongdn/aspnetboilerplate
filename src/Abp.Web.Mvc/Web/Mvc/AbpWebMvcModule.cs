@@ -26,7 +26,6 @@ namespace Abp.Web.Mvc
             ModelBinderProviders.BinderProviders.Clear();
             ModelBinderProviders.BinderProviders.Add(new AbpValidationModelBinderProvider());
 
-            ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(IocManager.IocContainer.Kernel));
             GlobalFilters.Filters.Add(IocManager.Resolve<AbpHandleErrorAttribute>());
         }
     }

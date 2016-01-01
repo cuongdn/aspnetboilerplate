@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Abp.AutoMapper;
 using ContosoUniversity.Students;
 using ContosoUniversity.Students.Dtos;
 
@@ -29,6 +31,15 @@ namespace ContosoUniversity.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    _studentService.Update(model);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
             }
             return View(model);
         }

@@ -7,6 +7,6 @@ namespace ContosoUniversity.Students
     {
         List<StudentDto> GetStudents();
         StudentDto GetStudent(int id);
-
+        Student Update(StudentDto student);
     }
 }

@@ -8,7 +8,7 @@ using Abp.Runtime.Validation;
 
 namespace ContosoUniversity.Students.Dtos
 {
-    public class StudentDto : EntityDto<int>, IMapFrom<Student>, IInputDto, ICustomValidate
+    public class StudentDto : EntityDto<int>, IMapping<Student>, ICustomValidate
     {
         [Required]
         public string FirstName { get; set; }
